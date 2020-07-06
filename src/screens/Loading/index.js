@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
+
+import * as firabase from 'firebase';
 
 import './styles';
 

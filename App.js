@@ -2,13 +2,31 @@ import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
-import Login from './src/screens/Login';
-import Loading from './src/screens/Loading';
-import Home from './src/screens/Home';
-import Register from './src/screens/Register';
+import LoginScreen from './src/screens/Login';
+import LoadingScreen from './src/screens/Loading';
+import HomeScreen from './src/screens/Home';
+import RegisterScreen from './src/screens/Register';
 
-const App = () => {
-  return <></>;
-};
+import firebaseConfig from './firebase';
 
-export default App;
+const AppStack = createStackNavigator({
+  Home: HomeScreen,
+});
+
+const AuthStack = createStackNavigator({
+  Login: LoginScreen,
+  Register: RegisterScreen,
+});
+
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      Loading: LoadingScreen,
+      App: AppStack,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'Loading',
+    },
+  ),
+);
