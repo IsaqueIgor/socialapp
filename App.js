@@ -1,6 +1,7 @@
 import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import {Transition} from 'react-native-reanimated';
 
 import LoginScreen from './src/screens/Login';
 import LoadingScreen from './src/screens/Loading';
@@ -18,15 +19,30 @@ const AuthStack = createStackNavigator({
   Register: RegisterScreen,
 });
 
-export default createAppContainer(
+const App = createAppContainer(
   createSwitchNavigator(
     {
-      Loading: LoadingScreen,
+      Login: LoginScreen,
       App: AppStack,
       Auth: AuthStack,
     },
     {
-      initialRouteName: 'Loading',
+      initialRouteName: 'Login',
+      headerMode: 'none',
+    },
+    {
+      transition: (
+        <Transition.Together>
+          <Transition.Out
+            type="slide-bottom"
+            durationMs={400}
+            interpolation="easeIn"
+          />
+          <Transition.In type="fade" durationMs={500} />
+        </Transition.Together>
+      ),
     },
   ),
 );
+
+export default App;

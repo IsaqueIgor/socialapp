@@ -1,14 +1,32 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import * as firebase from 'firebase';
 
-import './styles';
+import {styles} from './styles';
 
-export default class Home extends React.Component {
-  render() {
-    return (
-      <View>
-        <Text>Home</Text>
-      </View>
-    );
-  }
-}
+const Home = () => {
+  const [email, setEmail] = useState('');
+  const [displayName, setDisplayName] = useState('');
+
+  useEffect(() => {
+    const {userEmail, userDisplayName} = firebase.auth().currentUser;
+    setEmail(userEmail);
+    setDisplayName(userDisplayName);
+  }, []);
+
+  const signOutUser = () => {
+    firebase.auth().signOut();
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text>Hi {displayName}!</Text>
+
+      <TouchableOpacity style={{marginTop: 32}} onPress={signOutUser}>
+        <Text>Logout</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default Home;

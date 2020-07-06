@@ -3,12 +3,12 @@ import {View, Text} from 'react-native';
 
 import {styles} from './styles';
 
-export default class Register extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Register</Text>
-      </View>
-    );
-  }
-}
+const Register = () => {
+  return (
+    <View style={styles.container}>
+      <Text>Register</Text>
+    </View>
+  );
+};
+
+export default Register;

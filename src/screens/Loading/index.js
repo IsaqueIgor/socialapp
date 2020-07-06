@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, ActivityIndicator} from 'react-native';
 
 import * as firabase from 'firebase';
 
-import './styles';
+import {styles} from './styles';
 
-export default class Loading extends React.Component {
-  render() {
-    return (
-      <View>
-        <Text>Loading</Text>
-      </View>
-    );
-  }
-}
+const Loading = () => {
+  // useEffect(() => {
+  //   firabase.auth().onAuthStateChanged((user) => {
+  //     this.props.navigation.navigate(user ? 'App' : 'Auth');
+  //   });
+  // });
+
+  return (
+    <View style={styles.container}>
+      <Text>Loading...</Text>
+    </View>
+  );
+};
+
+export default Loading;
