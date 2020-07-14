@@ -6,7 +6,7 @@ import * as firabase from 'firebase';
 
 import {styles} from './styles';
 
-const Loading = () => {
+const Loading = ({navigation}) => {
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -18,6 +18,7 @@ const Loading = () => {
   return (
     <View style={styles.container}>
       <Text>Loading...</Text>
+      <ActivityIndicator size="large" />
     </View>
   );
 };

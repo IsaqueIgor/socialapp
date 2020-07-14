@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 30,
   },
   inputTitle: {
-    color: '#8a8f9e',
+    color: '#050308',
     fontSize: 10,
     textTransform: 'uppercase',
   },

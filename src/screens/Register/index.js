@@ -23,13 +23,13 @@ const Register = ({navigation}) => {
   const handleSignUp = () => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .createUserWithEmailAndPassword(email, password)
       .then((userCredentials) => {
         return userCredentials.user.updateProfile({
-          displayName: this.state.name,
+          displayName: name,
         });
       })
-      .catch((error) => this.setState({errorMessage: error.message}));
+      .catch((error) => setErrorMessage({errorMessage: error.message}));
   };
 
   const handleNavigatetoSignIn = () => {
@@ -41,7 +41,7 @@ const Register = ({navigation}) => {
       <StatusBar barStyle="light-content" />
 
       <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
-        <Icons name="left" size={26} color="#8A8F9E" />
+        <Icons name="left" size={26} color="#050308" />
       </TouchableOpacity>
       <View
         style={{

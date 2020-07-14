@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     textAlign: 'center',
-    color: '#8A8F9E',
+    color: '#050308',
   },
   form: {
     justifyContent: 'center',
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 30,
   },
   inputTitle: {
-    color: '#8A8F9E',
+    color: '#050308',
     fontSize: 10,
     textTransform: 'uppercase',
   },
