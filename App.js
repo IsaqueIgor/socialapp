@@ -25,7 +25,7 @@ const AuthStack = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
-      header: null,
+      headerShown: false,
     },
   },
 );
@@ -40,7 +40,7 @@ const App = createAppContainer(
     {
       initialRouteName: 'Login',
       navigationOptions: {
-        header: null,
+        headerShown: false,
       },
     },
     {

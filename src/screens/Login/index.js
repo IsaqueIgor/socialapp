@@ -22,7 +22,7 @@ const Login = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.greeting}>{'Hello . \n Welcome back'}</Text>
+      <Text style={styles.greeting}>{'Welcome back'}</Text>
 
       <View style={styles.errorMessage}>
         {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
@@ -62,7 +62,7 @@ const Login = ({navigation}) => {
         onPress={handleNavigatetoSignUp}>
         <Text style={{color: '#414959', fontSize: 14}}>
           New to Sociale?{' '}
-          <Text style={{fontWeight: '500', color: '#E9446A'}}>Sign Up</Text>
+          <Text style={{fontWeight: '500', color: '#3221B7'}}>Sign Up</Text>
         </Text>
       </TouchableOpacity>
     </View>

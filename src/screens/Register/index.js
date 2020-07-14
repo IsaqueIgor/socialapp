@@ -1,10 +1,20 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+  Image,
+  StatusBar,
+} from 'react-native';
 import * as firebase from 'firebase';
 
+import Icons from 'react-native-vector-icons/AntDesign';
 import {styles} from './styles';
 
-const Register = () => {
+Icons.loadFont();
+
+const Register = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -22,13 +32,33 @@ const Register = () => {
       .catch((error) => this.setState({errorMessage: error.message}));
   };
 
+  const handleNavigatetoSignIn = () => {
+    navigation.navigate('Login');
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
+      <StatusBar barStyle="light-content" />
+
+      <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
+        <Icons name="left" size={26} color="#8A8F9E" />
+      </TouchableOpacity>
+      <View
+        style={{
+          top: 64,
+          alignItems: 'center',
+          width: '100%',
+        }}>
+        <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
+        <TouchableOpacity style={styles.avatar}>
+          <Icons name="plus" size={40} />
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.errorMessage}>
         {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
       </View>
+
       <View style={styles.form}>
         <View>
           <Text style={styles.inputTitle}>Full Name</Text>
@@ -66,10 +96,12 @@ const Register = () => {
         <Text style={{color: '#FFF', fontWeight: '500'}}>Sign up</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={{alignSelf: 'center', marginTop: 32}}>
+      <TouchableOpacity
+        style={{alignSelf: 'center', marginTop: 32}}
+        onPress={handleNavigatetoSignIn}>
         <Text style={{color: '#414959', fontSize: 13}}>
-          New to Sociale?{' '}
-          <Text style={{fontWeight: '500', color: '#E9446A'}}>Login</Text>
+          Already have an account?{' '}
+          <Text style={{fontWeight: '500', color: '#3221B7'}}>Sign in</Text>
         </Text>
       </TouchableOpacity>
     </View>

@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
   },
   greeting: {
     marginTop: 32,
@@ -17,7 +18,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 30,
   },
   error: {
-    color: '#E9446A',
+    color: '#22089F',
     fontSize: 14,
     fontWeight: '600',
     textAlign: 'center',
@@ -40,8 +41,8 @@ export const styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 30,
-    backgroundColor: '#E9446A',
-    borderRadius: 8,
+    backgroundColor: '#22089F',
+    borderRadius: 30,
     height: 52,
     alignItems: 'center',
     justifyContent: 'center',
