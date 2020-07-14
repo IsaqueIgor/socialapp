@@ -14,10 +14,21 @@ const AppStack = createStackNavigator({
   Home: HomeScreen,
 });
 
-const AuthStack = createStackNavigator({
-  Login: LoginScreen,
-  Register: RegisterScreen,
-});
+const AuthStack = createStackNavigator(
+  {
+    Login: {
+      screen: LoginScreen,
+    },
+    Register: {
+      screen: RegisterScreen,
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      header: null,
+    },
+  },
+);
 
 const App = createAppContainer(
   createSwitchNavigator(
@@ -28,7 +39,9 @@ const App = createAppContainer(
     },
     {
       initialRouteName: 'Login',
-      headerMode: 'none',
+      navigationOptions: {
+        header: null,
+      },
     },
     {
       transition: (

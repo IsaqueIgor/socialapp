@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import * as firabase from 'firebase';
-import {useNavigation} from '@react-navigation/stack';
 
 import {styles} from './styles';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
@@ -16,8 +15,6 @@ const Login = () => {
       .signInWithEmailAndPassword(email, password)
       .catch((err) => setErrorMessage({errorMessage: err.message}));
   };
-
-  const navigation = useNavigation();
 
   const handleNavigatetoSignUp = () => {
     navigation.navigate('Register');
