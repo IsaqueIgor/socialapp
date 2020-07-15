@@ -7,6 +7,8 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
+
+import ImagePicker from 'react-native-image-picker';
 import * as firebase from 'firebase';
 
 import Icons from 'react-native-vector-icons/AntDesign';
@@ -15,18 +17,38 @@ import {styles} from './styles';
 Icons.loadFont();
 
 const Register = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({
+    user: {
+      name: '',
+      email: '',
+      password: '',
+      avatar: null,
+    },
+  });
+
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const imagePickerOptions = {
+    title: 'Select an Image',
+    customButtons: [
+      {
+        name: 'fb',
+        title: 'Selecione uma imagem do facebook',
+      },
+      {
+        name: 'ig',
+        title: 'Selecione uma imagem do instagram',
+      },
+    ],
+  };
 
   const handleSignUp = () => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
         return userCredentials.user.updateProfile({
-          displayName: name,
+          displayName: user.name,
         });
       })
       .catch((error) => setErrorMessage({errorMessage: error.message}));
@@ -35,6 +57,38 @@ const Register = ({navigation}) => {
   const handleNavigatetoSignIn = () => {
     navigation.navigate('Login');
   };
+
+  const handlePickAvatar = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+
+    if (!result.cancelled) {
+      setUser({user: {...user, avatar: result.uri}});
+    }
+  };
+
+  function imagePickerCallback(data) {
+    if (data.didCancel) {
+      return;
+    }
+
+    if (data.error) {
+      return;
+    }
+
+    if (data.customButton) {
+      return;
+    }
+
+    if (!data.uri) {
+      return;
+    }
+
+    setUser({user: {...user, avatar: data}});
+  }
 
   return (
     <View style={styles.container}>
@@ -50,7 +104,12 @@ const Register = ({navigation}) => {
           width: '100%',
         }}>
         <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
-        <TouchableOpacity style={styles.avatar}>
+        <TouchableOpacity
+          style={styles.avatarPlaceholder}
+          onPress={() =>
+            ImagePicker.showImagePicker(imagePickerOptions, imagePickerCallback)
+          }>
+          <Image source={{uri: user.avatar}} style={styles.avatar} />
           <Icons name="plus" size={40} />
         </TouchableOpacity>
       </View>
@@ -65,8 +124,8 @@ const Register = ({navigation}) => {
           <TextInput
             style={styles.input}
             autoCapitalize="none"
-            onChangeText={(value) => setName(value)}
-            value={name}
+            onChangeText={(value) => setUser({user: {...user, name: value}})}
+            value={user.name}
           />
         </View>
 
@@ -75,8 +134,8 @@ const Register = ({navigation}) => {
           <TextInput
             style={styles.input}
             autoCapitalize="none"
-            onChangeText={(value) => setEmail(value)}
-            value={email}
+            onChangeText={(value) => setUser({user: {...user, email: value}})}
+            value={user.email}
           />
         </View>
 
@@ -86,8 +145,10 @@ const Register = ({navigation}) => {
             style={styles.input}
             secureTextEntry
             autoCapitalize="none"
-            onChangeText={(value) => setPassword(value)}
-            value={password}
+            onChangeText={(value) =>
+              setUser({user: {...user, password: value}})
+            }
+            value={user.password}
           />
         </View>
       </View>

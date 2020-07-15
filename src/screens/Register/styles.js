@@ -59,6 +59,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  avatarPlaceholder: {
+    width: 100,
+    height: 100,
+    backgroundColor: '#E1E2E6',
+    borderRadius: 50,
+    marginTop: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   avatar: {
     width: 100,
     height: 100,
