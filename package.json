@@ -12,6 +12,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
+    "commit": "git-cz",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -40,6 +41,8 @@
     "@babel/runtime": "^7.10.4",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.1.0",
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "3.2.0",
     "eslint": "^7.4.0",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
@@ -48,5 +51,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
