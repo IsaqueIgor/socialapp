@@ -13,7 +13,7 @@ import NotificationScreen from './src/screens/Notification';
 import PostScreen from './src/screens/Post';
 import ProfileScreen from './src/screens/Profile';
 
-import firebaseConfig from './firebase';
+import firebaseConfig from './configDB';
 import * as firebase from 'firebase';
 
 import Icons from 'react-native-vector-icons/Entypo';
